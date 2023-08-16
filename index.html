@@ -393,15 +393,29 @@ function showNearestShelterText(nearestShelterName) {
   nearestShelterText.innerHTML = `가장 가까운 무더위쉼터는 <strong>${nearestShelterName}</strong> 입니다.`;
 }
 
- // 마커 클러스터 객체 생성
- var markerCluster = new MarkerClusterer({
-    map: map,
-    markers: markers,
-    gridSize: 50, // 클러스터 그리드 크기
-    minClusterSize: 5, // 최소 클러스터 크기
-    zoomOnClick: true, // 클릭 시 확대 여부
-    disableClickZoom: false // 클릭 시 지도 확대 여부
-  });
+
+
+  // 마커 클러스터 스타일 설정
+var clusterStyles = [
+{
+  width: 40,
+  height: 40,
+  background: '#dc3545', // 빨간색 배경
+  color: '#fff', // 흰색 텍스트
+  
+}
+];
+
+// 스타일을 적용한 마커 클러스터 객체 생성
+var markerCluster = new MarkerClusterer({
+map: map,
+markers: markers,
+gridSize: 50, // 클러스터 그리드 크기
+minClusterSize: 5, // 최소 클러스터 크기
+zoomOnClick: true, // 클릭 시 확대 여부
+disableClickZoom: false, // 클릭 시 지도 확대 여부
+styles: clusterStyles // 스타일 배열 적용
+});
 
   </script>
 </head>
