@@ -216,6 +216,9 @@
       return markers;
     }
 
+    // 마커 클러스터링 라이브러리 로드
+    var markers = []; // 마커 배열
+
     function displayMarkers(markers) {
       markers.forEach(marker => {
         const position = new naver.maps.LatLng(marker.latitude, marker.longitude);
@@ -389,6 +392,16 @@ function showNearestShelterText(nearestShelterName) {
   const nearestShelterText = document.getElementById("nearestShelterText");
   nearestShelterText.innerHTML = `가장 가까운 무더위쉼터는 <strong>${nearestShelterName}</strong> 입니다.`;
 }
+
+ // 마커 클러스터 객체 생성
+ var markerCluster = new MarkerClusterer({
+    map: map,
+    markers: markers,
+    gridSize: 50, // 클러스터 그리드 크기
+    minClusterSize: 5, // 최소 클러스터 크기
+    zoomOnClick: true, // 클릭 시 확대 여부
+    disableClickZoom: false // 클릭 시 지도 확대 여부
+  });
 
   </script>
 </head>
