@@ -124,6 +124,64 @@
       background-color: #6E6E6E;
     }
 
+    /**/
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 20px;
+    }
+    .hamburger {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+    }
+    .close-btn {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+    }
+    .sidebar {
+        display: none;
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        text-align: center;
+        top: 0;
+        left: 0;
+        background-color: #333;
+        color: white;
+        padding-top: 20px;
+        z-index: 1000;
+    }
+    .sidebar.active {
+        display: block;
+        
+    }
+
+    .sidebar ul li a {
+        display: block;
+        padding: 10px 0;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        
+    }
+    .sidebar ul li a:hover {
+        background-color: #555;
+    }
+
   </style>
   <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6lcb5pk9bx" 
   charset="utf-8"></script>
@@ -493,6 +551,8 @@ function startDataLayer() {
 
 <body>
 
+
+
 <body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
     <div class="menu" >
       <nav class="clearfix">
@@ -514,6 +574,20 @@ function startDataLayer() {
     <div class="button-container">
         <button onclick="findNextNearestShelter()">가까운 무더위쉼터 찾기</button>
         <button onclick="moveToCurrentLocation()">내 위치로 이동</button>
+    </div>
+
+    <div class="navbar">
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        폭염
+    </div>
+     <div id="sidebar" class="sidebar">
+        <div class="close-btn" id="closeBtn">&times;</div>
+        <h2>사이드바</h2>
+        <ul style="list-style-type:none">
+            <li><a href="#">메뉴 1</a></li>
+            <li><a href="#">메뉴 2</a></li>
+            <li><a href="#">메뉴 3</a></li>
+        </ul>
     </div>
 
 
