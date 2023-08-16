@@ -5,75 +5,87 @@
   <title>[폭염]</title>
   <style>
 /* 상위배너 글자 */
-    .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #333;
-        color: white;
-        text-align: center;
-        padding: 10px 0;
-        font-size: 20px;
-    }
-    .hamburger {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        font-size: 24px;
-        cursor: pointer;
-        color: white;
-    }
-    .close-btn {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        font-size: 24px;
-        cursor: pointer;
-        color: white;
-    }
-    .sidebar {
-        display: none;
-        height: 100%;
-        width: 250px;
-        position: fixed;
-        text-align: center;
-        top: 0;
-        left: 0;
-        background-color: #333;
-        color: white;
-        padding-top: 20px;
-        z-index: 1000;
-    }
-    .sidebar.active {
-        display: block;
-        
+    nav{ 
+    	font-size: 17pt;
+    	font-family: 'PT Sans', Arial, Sans-serif;
+    	position: relative;
     }
 
-    .sidebar ul li a {
-        display: block;
-        padding: 10px 0;
-        color: white;
-        text-decoration: none;
-        text-align: center;
-        
+    nav ul{
+    	padding: 0;
+    	margin: 0 auto;
+    	width: auto;
     }
-    .sidebar ul li a:hover {
-        background-color: #555;
+
+    nav li{
     }
-    #map {
-        width: 100%;
-        height: calc(100vh - 60px);
-        margin-top: 50px;
+
+    nav a{
+    	line-height: 50px;
+      height: 50px;
     }
-    .user-marker {
-    background-color: #ff0606;
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 7px;
+    nav li a{
+    	box-sizing: border-box;
+    	-moz-box-sizing: border-box;
+    	-webkit-box-sizing: border-box;
     }
-    
+
+    nav li:last-child a{
+    	border-right: 0;
+    }
+
+    nav a:hover, nav a:active{
+    }
+    nav a#pull{
+    	display: none;
+    }
+
+    html {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      background-color: #333;
+      text-align: center;
+    }
+    li {
+      display: inline-block;
+    }
+    /* 폭염 정보 글씨 크기*/
+    li a {
+      color: #FFFFFF;
+      text-align: center;
+      padding: 14.5px 16px;
+      text-decoration: none;
+    }
+
+/*상단 배너 크기*/
+    .menu {
+      width: 5000px;
+      height: 50px;
+      text-align: center;
+      max-width: 100%;
+      background-position: center;
+      background-size: cover;
+      background-color: #333333;
+      color: white;
+      position: absolute;
+      z-index: 1;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      text-align: center;
+      padding: 0px;
+      box-sizing: border-box;
+    }
     .map-container {
       width: 100%;
       margin-top: 0px;
@@ -203,9 +215,6 @@
 
       return markers;
     }
-
-    // 마커 클러스터링 라이브러리 로드
-    var markers = []; // 마커 배열
 
     function displayMarkers(markers) {
       markers.forEach(marker => {
@@ -381,30 +390,6 @@ function showNearestShelterText(nearestShelterName) {
   nearestShelterText.innerHTML = `가장 가까운 무더위쉼터는 <strong>${nearestShelterName}</strong> 입니다.`;
 }
 
-
-
-  // 마커 클러스터 스타일 설정
-var clusterStyles = [
-{
-  width: 40,
-  height: 40,
-  background: '#dc3545', // 빨간색 배경
-  color: '#fff', // 흰색 텍스트
-  
-}
-];
-
-// 스타일을 적용한 마커 클러스터 객체 생성
-var markerCluster = new MarkerClusterer({
-map: map,
-markers: markers,
-gridSize: 50, // 클러스터 그리드 크기
-minClusterSize: 5, // 최소 클러스터 크기
-zoomOnClick: true, // 클릭 시 확대 여부
-disableClickZoom: false, // 클릭 시 지도 확대 여부
-styles: clusterStyles // 스타일 배열 적용
-});
-
   </script>
 </head>
 
@@ -412,20 +397,15 @@ styles: clusterStyles // 스타일 배열 적용
 
 
 
-<div class="navbar">
-        <div class="hamburger" id="hamburger">&#9776;</div>
-        폭염 정보
+<body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
+    <div class="menu" >
+      <nav class="clearfix">
+        <ul class="clearfix">
+          <li><a href="#">폭염 정보</a></li> <!--""<-여기 부분에 URL 작성하면 됨-->
+      </ul>
+      <a id="pull" href="#"></a>
+    </nav>
     </div>
-     <div id="sidebar" class="sidebar">
-        <div class="close-btn" id="closeBtn">&times;</div>
-        <h2>사이드바</h2>
-        <ul style="list-style-type:none">
-            <li><a href="#">비상연락망</a></li>
-            <li><a href="#">미래지기</a></li>
-        </ul>
-    </div>
-  <div id="map"></div>
-  
   </body>
   <div id="container">
     <h2>           </h2>
