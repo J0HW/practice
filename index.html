@@ -5,6 +5,50 @@
   <title>[폭염]</title>
   <style>
 /* 상위배너 글자 */
+     .hamburger {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+    }
+    .close-btn {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+    }
+    .sidebar {
+        display: none;
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        text-align: center;
+        top: 0;
+        left: 0;
+        background-color: #333;
+        color: white;
+        padding-top: 20px;
+        z-index: 1000;
+    }
+    .sidebar.active {
+        display: block;
+        
+    }
+    .sidebar ul li a {
+        display: block;
+        padding: 10px 0;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        
+    }
+    .sidebar ul li a:hover {
+        background-color: #555;
+    
     nav{ 
     	font-size: 17pt;
     	font-family: 'PT Sans', Arial, Sans-serif;
@@ -399,6 +443,12 @@ function showNearestShelterText(nearestShelterName) {
 
 <body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
     <div class="menu" >
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <div class="close-btn" id="closeBtn">&times;</div>
+        <ul style="list-style-type:none">
+            <li><a href="#">비상연락망</a></li>
+            <li><a href="#">미래지기</a></li>
+        </ul>
       <nav class="clearfix">
         <ul class="clearfix">
           <li><a href="#">폭염 정보</a></li> <!--""<-여기 부분에 URL 작성하면 됨-->
