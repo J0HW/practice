@@ -436,7 +436,7 @@
       return degrees * (Math.PI / 180);
     }
 
-    function moveToCurrentLocation() {
+    function myLocationBtn() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
           const currentLatitude = position.coords.latitude;
