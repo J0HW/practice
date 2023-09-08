@@ -5,40 +5,39 @@
   <title>[폭염]</title>
   <style>
 /* 상위배너 글자 */
-   
     nav{ 
-    	font-size: 17pt;
-    	font-family: 'PT Sans', Arial, Sans-serif;
-    	position: relative;
+       font-size: 17pt;
+       font-family: 'PT Sans', Arial, Sans-serif;
+       position: relative;
     }
 
     nav ul{
-    	padding: 0;
-    	margin: 0 auto;
-    	width: auto;
+       padding: 0;
+       margin: 0 auto;
+       width: auto;
     }
 
     nav li{
     }
 
     nav a{
-    	line-height: 50px;
+       line-height: 50px;
       height: 50px;
     }
     nav li a{
-    	box-sizing: border-box;
-    	-moz-box-sizing: border-box;
-    	-webkit-box-sizing: border-box;
+       box-sizing: border-box;
+       -moz-box-sizing: border-box;
+       -webkit-box-sizing: border-box;
     }
 
     nav li:last-child a{
-    	border-right: 0;
+       border-right: 0;
     }
 
     nav a:hover, nav a:active{
     }
     nav a#pull{
-    	display: none;
+       display: none;
     }
 
     html {
@@ -64,8 +63,7 @@
     }
 
 /*상단 배너 크기*/
-
-      .ol-popup-closer {
+     .ol-popup-closer {
       text-decoration: none;
       position: absolute;
       top: 2px;
@@ -184,7 +182,6 @@
     }
 
 
-
     .manuals {
       display: flex;
       justify-content: space-between;
@@ -209,11 +206,15 @@
     body {
       background-color: #6E6E6E;
     }
+
   </style>
   
   <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6lcb5pk9bx" 
   charset="utf-8"></script>
-  <script src="./MarkerClustering.js"></script>
+
+  
+
+
 
   <script>
     var map; // 지도 객체
@@ -224,6 +225,628 @@
     function initMap() {
       getLocation();
     }
+
+    function getCurrentAddress(latitude, longitude) {
+      const geocoder = new naver.maps.services.Geocoder();
+
+      const latlng = new naver.maps.LatLng(latitude, longitude);
+      geocoder.addressSearch(latlng, function (results, status) {
+        if (status === naver.maps.Service.Status.ERROR) {
+          alert("주소를 가져올 수 없습니다.");
+        } else {
+          if (results.length > 0) {
+            const address = results[0].roadAddress || results[0].jibunAddress || results[0].englishAddress || "주소를 찾을 수 없습니다.";
+            showCurrentLocationText(address);
+          } else {
+            showCurrentLocationText("주소를 찾을 수 없습니다.");
+          }
+        }
+      });
+    }
+    function showPosition(position) {
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+
+      var mapOptions = {
+        center: new naver.maps.LatLng(latitude, longitude),
+        zoom: 17
+      };
+      map = new naver.maps.Map(document.getElementById("map"), mapOptions);
+
+// 현재 위치 마커 추가
+showCurrentLocationMarker(latitude, longitude);
+
+// 현재 주소 가져오기
+getCurrentAddress(latitude, longitude);
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter01.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+  fetch('./HeatWaveShelter02.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+  fetch('./HeatWaveShelter03.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter04.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+    // CSV 파일 로드
+  fetch('./HeatWaveShelter05.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter06.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+    // CSV 파일 로드
+  fetch('./HeatWaveShelter07.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter08.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+    // CSV 파일 로드
+  fetch('./HeatWaveShelter09.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter010.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+fetch('./HeatWaveShelter11.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter12.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter13.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter14.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter15.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter16.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter17.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter18.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter19.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter020.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+fetch('./HeatWaveShelter21.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter22.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter23.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter24.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter25.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter26.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter27.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter28.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter29.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter030.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+fetch('./HeatWaveShelter31.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter32.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter33.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter34.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter35.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter36.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter37.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter38.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter39.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter040.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+fetch('./HeatWaveShelter41.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter42.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter43.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter44.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter45.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter46.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter47.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter48.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter49.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter50.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+fetch('./HeatWaveShelter51.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter52.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter53.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter54.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter55.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter56.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter57.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter58.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter59.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter60.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter61.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter62.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter63.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter64.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter65.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+}
+
+
 
     function getLocation() {
       if (navigator.geolocation) {
@@ -254,6 +877,583 @@
           displayMarkers(markers);
         })
         .catch(error => console.error('Error:', error));
+
+        // CSV 파일 로드
+      fetch('./HeatWaveShelter02.csv')
+      .then(response => response.text())
+      .then(data => {
+        markers = parseCSVData(data);
+        displayMarkers(markers);
+      })
+      .catch(error => console.error('Error:', error));
+
+       // CSV 파일 로드
+       fetch('./HeatWaveShelter03.csv')
+       .then(response => response.text())
+       .then(data => {
+         markers = parseCSVData(data);
+         displayMarkers(markers);
+       })
+       .catch(error => console.error('Error:', error));
+
+          // CSV 파일 로드
+   fetch('./HeatWaveShelter04.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+    // CSV 파일 로드
+  fetch('./HeatWaveShelter05.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter06.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+    // CSV 파일 로드
+  fetch('./HeatWaveShelter07.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter08.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+    // CSV 파일 로드
+  fetch('./HeatWaveShelter09.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter010.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+fetch('./HeatWaveShelter11.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter12.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter13.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter14.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter15.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter16.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter17.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter18.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter19.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter020.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+fetch('./HeatWaveShelter21.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter22.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter23.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter24.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter25.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter26.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter27.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter28.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter29.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter030.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter31.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+  fetch('./HeatWaveShelter32.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+  fetch('./HeatWaveShelter33.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter34.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+    // CSV 파일 로드
+  fetch('./HeatWaveShelter35.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter36.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+    // CSV 파일 로드
+  fetch('./HeatWaveShelter37.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter38.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+    // CSV 파일 로드
+  fetch('./HeatWaveShelter39.csv')
+  .then(response => response.text())
+  .then(data => {
+    markers = parseCSVData(data);
+    displayMarkers(markers);
+  })
+  .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+   fetch('./HeatWaveShelter040.csv')
+   .then(response => response.text())
+   .then(data => {
+     markers = parseCSVData(data);
+     displayMarkers(markers);
+   })
+   .catch(error => console.error('Error:', error));
+
+   // CSV 파일 로드
+fetch('./HeatWaveShelter41.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter42.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter43.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter44.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter45.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter46.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter47.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter48.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter49.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter50.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+fetch('./HeatWaveShelter51.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter52.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter53.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter54.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter55.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter56.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter57.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter58.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter59.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter60.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter61.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter62.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+// CSV 파일 로드
+fetch('./HeatWaveShelter63.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
+ // CSV 파일 로드
+ fetch('./HeatWaveShelter64.csv')
+ .then(response => response.text())
+ .then(data => {
+   markers = parseCSVData(data);
+   displayMarkers(markers);
+ })
+ .catch(error => console.error('Error:', error));
+
+  // CSV 파일 로드
+fetch('./HeatWaveShelter65.csv')
+.then(response => response.text())
+.then(data => {
+  markers = parseCSVData(data);
+  displayMarkers(markers);
+})
+.catch(error => console.error('Error:', error));
+
     }
 
     function showError(error) {
@@ -476,14 +1676,11 @@ function showNearestShelterText(nearestShelterName) {
   const nearestShelterText = document.getElementById("nearestShelterText");
   nearestShelterText.innerHTML = `가장 가까운 무더위쉼터는 <strong>${nearestShelterName}</strong> 입니다.`;
 }
-
   </script>
 </head>
 
+  
 <body>
-
-
-
 <body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
       <div class="navbar">
     <div class="hamburger" id="hamburger">&#9776;</div>
@@ -527,75 +1724,7 @@ function showNearestShelterText(nearestShelterName) {
     <div class="button-container">
         <button onclick="findNextNearestShelter()">가까운 무더위쉼터 찾기</button>
 
-    </div>
-
-    <script>
-      var map = new naver.maps.Map("map", {
-        zoom: 6,
-        center: new naver.maps.LatLng(36.2253017, 127.6460516),
-        zoomControl: true,
-        zoomControlOptions: {
-            position: naver.maps.Position.TOP_LEFT,
-            style: naver.maps.ZoomControlStyle.SMALL
-        }
-    }),
-    markers = [];
-
-var htmlMarker1 = {
-        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url('+ HOME_PATH +'/img/cluster-marker-1.png);background-size:contain;"></div>',
-        size: N.Size(40, 40),
-        anchor: N.Point(20, 20)
-    },
-    htmlMarker2 = {
-        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url('+ HOME_PATH +'/img/cluster-marker-2.png);background-size:contain;"></div>',
-        size: N.Size(40, 40),
-        anchor: N.Point(20, 20)
-    },
-    htmlMarker3 = {
-        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url('+ HOME_PATH +'/img/cluster-marker-3.png);background-size:contain;"></div>',
-        size: N.Size(40, 40),
-        anchor: N.Point(20, 20)
-    },
-    htmlMarker4 = {
-        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url('+ HOME_PATH +'/img/cluster-marker-4.png);background-size:contain;"></div>',
-        size: N.Size(40, 40),
-        anchor: N.Point(20, 20)
-    },
-    htmlMarker5 = {
-        content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url('+ HOME_PATH +'/img/cluster-marker-5.png);background-size:contain;"></div>',
-        size: N.Size(40, 40),
-        anchor: N.Point(20, 20)
-    };
-
-function onLoad() {
-    var data = accidentDeath.searchResult.accidentDeath;
-
-    for (var i = 0, ii = data.length; i < ii; i++) {
-        var spot = data[i],
-            latlng = new naver.maps.LatLng(spot.grd_la, spot.grd_lo),
-            marker = new naver.maps.Marker({
-                position: latlng,
-                draggable: true
-            });
-
-        markers.push(marker);
-    }
-
-    var markerClustering = new MarkerClustering({
-        minClusterSize: 2,
-        maxZoom: 8,
-        map: map,
-        markers: markers,
-        disableClickZoom: false,
-        gridSize: 120,
-        icons: [htmlMarker1, htmlMarker2, htmlMarker3, htmlMarker4, htmlMarker5],
-        indexGenerator: [10, 100, 200, 500, 1000],
-        stylingFunction: function(clusterMarker, count) {
-            $(clusterMarker.getElement()).find('div:first-child').text(count);
-        }
-    });
-}
-    <script>
+    </div>>
 
 
     <script>
