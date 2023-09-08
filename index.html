@@ -509,6 +509,11 @@ function showNearestShelterText(nearestShelterName) {
   </div>
 
   </body>
+
+  <div id="myLocationBtn">
+    <div class="my-location-btn">
+      <button onclick="moveToCurrentLocation()">📍</div>
+
   <div id="container">
     <h2>           </h2>
 
@@ -521,9 +526,6 @@ function showNearestShelterText(nearestShelterName) {
         <button onclick="findNextNearestShelter()">가까운 무더위쉼터 찾기</button>
 
     </div>
-
-    <div class="my-location-btn">
-      <button onclick="moveToCurrentLocation()">📍</div>
 
     <script>
       var map = new naver.maps.Map("map", {
