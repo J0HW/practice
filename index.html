@@ -208,7 +208,35 @@
   <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6lcb5pk9bx" 
   charset="utf-8"></script>
 
-  
+  <body>
+  <body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
+      <div class="navbar">
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    무더위쉼터 지도
+  </div>
+  <div id="sidebar" class="sidebar">
+    <div class="close-btn" id="closeBtn">&times;</div>
+    <h2>무더위쉼터 지도</h2>
+    <ul style="list-style-type:none">
+      <li><a href="./floodmap1.html">국가하천범람지도</a></li>
+      <li><a href="./floodmap2.html">지방하천범람지도</a></li>
+    </ul>
+    <br /><br /><br /><br /><br /><br /><br /> <br/>
+    <ul style="list-style-type:none">
+        <li style="text-align: left; padding: 0px 20px 0px 0px;"><h4>하천범람지도는<br />하천이 범람하거나 붕괴되는 상황을 가정하여 하천주변의 예상 침수범위와 침수 깊이를 표출한 지도 입니다.</h4></li>
+    </ul>
+    <br />
+    <h5>개발자</h5>
+    <p>미래지기</p>
+  </div>
+
+  <div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+    <div id="popup-content"></div>
+  </div>
+
+  </body>
+
 
 
 
@@ -1449,21 +1477,20 @@ fetch('./HeatWaveShelter65.csv')
   displayMarkers(markers);
 })
 .catch(error => console.error('Error:', error));
+}
 
+function showError(error) {
+  alert("위치 정보를 가져올 수 없습니다.");
     }
 
-    function showError(error) {
-      alert("위치 정보를 가져올 수 없습니다.");
-    }
+function showCurrentLocationMarker(latitude, longitude) {
+  const currentLocation = new naver.maps.LatLng(latitude, longitude);
 
-    function showCurrentLocationMarker(latitude, longitude) {
-      const currentLocation = new naver.maps.LatLng(latitude, longitude);
-
-      currentLocationMarker = new naver.maps.Marker({
-        position: currentLocation,
-        map: map,
-        title: "현재 위치"
-      });
+  currentLocationMarker = new naver.maps.Marker({
+    position: currentLocation,
+    map: map,
+    title: "현재 위치"
+  });
 
       const infoWindowContent = "현재 위치";
       currentLocationInfoWindow = new naver.maps.InfoWindow({
@@ -1534,7 +1561,7 @@ fetch('./HeatWaveShelter65.csv')
           if (nextShelter) {
 
             const currentLatitude = currentLocationMarker.getPosition().y;
-    const currentLongitude = currentLocationMarker.getPosition().x;
+            const currentLongitude = currentLocationMarker.getPosition().x;
 
             // 이전에 선택된 마커와 정보창 삭제
             if (currentLocationMarker) {
@@ -1676,34 +1703,6 @@ function showNearestShelterText(nearestShelterName) {
 </head>
 
   
-<body>
-<body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
-      <div class="navbar">
-    <div class="hamburger" id="hamburger">&#9776;</div>
-    무더위쉼터 지도
-  </div>
-  <div id="sidebar" class="sidebar">
-    <div class="close-btn" id="closeBtn">&times;</div>
-    <h2>무더위쉼터 지도</h2>
-    <ul style="list-style-type:none">
-      <li><a href="./floodmap1.html">국가하천범람지도</a></li>
-      <li><a href="./floodmap2.html">지방하천범람지도</a></li>
-    </ul>
-    <br /><br /><br /><br /><br /><br /><br /> <br/>
-    <ul style="list-style-type:none">
-        <li style="text-align: left; padding: 0px 20px 0px 0px;"><h4>하천범람지도는<br />하천이 범람하거나 붕괴되는 상황을 가정하여 하천주변의 예상 침수범위와 침수 깊이를 표출한 지도 입니다.</h4></li>
-    </ul>
-    <br />
-    <h5>개발자</h5>
-    <p>미래지기</p>
-  </div>
-
-  <div id="popup" class="ol-popup">
-    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-    <div id="popup-content"></div>
-  </div>
-
-  </body>
 
   <div id="myLocationBtn">
     <div class="my-location-btn">
