@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-   <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>[폭염]</title>
+  <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6lcb5pk9bx" 
+  charset="utf-8"></script>
+   
   <style>
 /* 상위배너 글자 */
     nav{ 
@@ -224,35 +227,38 @@
       background-color: #6E6E6E;
     }
 
-     </style>
-   </head>
-  
-  <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6lcb5pk9bx" 
-  charset="utf-8"></script>
-
-  <body>
-  <body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" style="background-color:#F6F6F6">
-      <div class="navbar">
-    <div class="hamburger" id="hamburger">&#9776;</div>
-    무더위쉼터 지도
-  </div>
-  <div id="sidebar" class="sidebar">
-    <div class="close-btn" id="closeBtn">&times;</div>
-    <h2>무더위쉼터 지도</h2>
+   </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        지진
+    </div>
+   
+     <div id="sidebar" class="sidebar">
+        <div class="close-btn" id="closeBtn">&times;</div>
+        <h2>무더위쉼터 지도</h2>
+        <ul style="list-style-type:none">
+             <li><a href="https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/sfc/res/victimList.jsp?acmdfclty_cd=2&emgPage=Y&menuSeq=855">지진대피장소 검색</a></li>
+            <li><a href="https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/contents/prevent/prevent09.html?menuSeq=126">지진 시 행동 요령</a></li>        
+            <li><a href="https://www.safekorea.go.kr/idsiSFK/neo/sfk/cs/ppn/emg/SDIJKM5602.html?menuSeq=596">비상연락망</a></li>
+        <hr/>
+      <li><a href="https://djuaionelab.github.io/DA-plus/index.html">폭염</a></li>
+      <li><a href="https://3hwangg.github.io/23opensw/floodmap2.html">홍수(지방하천)</a></li>
+      <li><a href="https://3hwangg.github.io/23opensw/floodmap1.html">홍수(국가하천)</a></li>    
+        </ul>
+    <br /><br /><br /><br />
     <ul style="list-style-type:none">
-      <li><a href="./floodmap1.html">국가하천범람지도</a></li>
-      <li><a href="./floodmap2.html">지방하천범람지도</a></li>
-    </ul>
-    <br /><br /><br /><br /><br /><br /><br /> <br/>
-    <ul style="list-style-type:none">
-        <li style="text-align: left; padding: 0px 20px 0px 0px;"><h4>하천범람지도는<br />하천이 범람하거나 붕괴되는 상황을 가정하여 하천주변의 예상 침수범위와 침수 깊이를 표출한 지도 입니다.</h4></li>
+        <li style="text-align: left; padding: 0 20 0 0;">
+        <h4>지진대피지도는<br />현재 위치를 확인하고, 전국 지진 대피장소 표준 데이터를 제공받아 전국의 지진대피소 위치와 현재 위치에서 가장 가까운 지진대피소를 알 수 있습니다.</h4></li>
     </ul>
     <br />
     <h5>개발자</h5>
     <p>미래지기</p>
-  </div>
+    </div>
+    <div id="map"></div>
 
-  <div id="popup" class="ol-popup">
+    <div id="popup" class="ol-popup">
     <a href="#" id="popup-closer" class="ol-popup-closer"></a>
     <div id="popup-content"></div>
   </div>
