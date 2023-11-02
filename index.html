@@ -604,6 +604,17 @@ function showNearestShelterText(nearestShelterName) {
         alert("가장 가까운 무더위쉼터 정보를 가져올 수 없습니다.");
       }
     }
+    var hamburger = document.getElementById('hamburger');
+    var closeBtn = document.getElementById('closeBtn');
+    var sidebar = document.getElementById('sidebar');
+
+    hamburger.addEventListener('click', function() {
+        sidebar.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', function() {
+        sidebar.classList.remove('active');
+    });
     </script>
   <div>
     <div id="currentLocationText"></div>
